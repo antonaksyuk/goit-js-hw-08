@@ -10,8 +10,8 @@ if (currentTime) {
   player.setCurrentTime(currentTime);
 }
 
-const onTimeUpdate = e => {
-  localStorage.setItem('videoplayer-current-time', JSON.stringify(e.seconds));
+const onTimeUpdate = evt => {
+  localStorage.setItem('videoplayer-current-time', JSON.stringify(evt.seconds));
 };
 
 player.on('timeupdate', throttle(onTimeUpdate, 1000));
