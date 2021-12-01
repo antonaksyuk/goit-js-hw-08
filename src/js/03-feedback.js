@@ -1,6 +1,7 @@
 import { throttle } from 'lodash';
 
 const isFeedbackFormFill = document.querySelector('.feedback-form')
+let textData;
 
 isFeedbackFormFill.addEventListener('input', throttle(onFeedbackFormInput, 500));
 isFeedbackFormFill.addEventListener('submit', onFeedbackFormSubmit);
@@ -10,14 +11,16 @@ function onFeedbackFormInput() {
     email: isFeedbackFormFill.email.value,
     message: isFeedbackFormFill.message.value,
   };
+  textData = data;
   localStorage.setItem('feedback-form-state', JSON.stringify(data));
 }
 
 function onFeedbackFormSubmit(evt) {
   evt.preventDefault();
+  console.log(textData);
   evt.currentTarget.reset();
 
-  localStorage.removeItem('feedback-form-state');
+  localStorage.clear('feedback-form-state');
 }
 
 function fillOutForm() {
